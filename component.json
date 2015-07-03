@@ -1,0 +1,19 @@
+{
+  "name": "mdast-util-heading-style",
+  "version": "0.1.0",
+  "description": "Utility to get the style of a heading.",
+  "license": "MIT",
+  "keywords": [
+    "mdast",
+    "markdown",
+    "node",
+    "heading",
+    "style",
+    "util",
+    "utility"
+  ],
+  "repository": "wooorm/mdast-util-heading-style",
+  "scripts": [
+    "index.js"
+  ]
+}

@@ -1,0 +1,78 @@
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer. All rights reserved.
+ * @module mdast-util-heading-style
+ * @fileoverview Utility to get the style of a heading.
+ */
+
+'use strict';
+
+/**
+ * Get the probable style of an atx-heading, depending on
+ * preferred style.
+ *
+ * @example
+ *   consolidate(1, 'setext') // 'atx'
+ *   consolidate(1, 'atx') // 'atx'
+ *   consolidate(3, 'setext') // 'setext'
+ *   consolidate(3, 'atx') // 'atx'
+ *
+ * @param {number} depth
+ * @param {string?} relative
+ * @return {string?} - Type.
+ */
+function consolidate(depth, relative) {
+    return depth < 3 ? 'atx' :
+        relative === 'atx' || relative === 'setext' ? relative : null;
+}
+
+/**
+ * Check the style of a heading.
+ *
+ * @param {Node} node
+ * @param {string?} relative - Heading type which we'd wish
+ *   this to be.
+ * @return {string?} - Type, either `'atx-closed'`,
+ *   `'atx'`, or `'setext'`.
+ */
+function style(node, relative) {
+    var last = node.children[node.children.length - 1];
+    var depth = node.depth;
+    var pos = node && node.position && node.position.end;
+    var final = last && last.position && last.position.end;
+
+    if (!pos) {
+        return null;
+    }
+
+    /*
+     * This can only occur for atx and `'atx-closed'`
+     * headings.  This might incorrectly match `'atx'`
+     * headings with lots of trailing white space as an
+     * `'atx-closed'` heading.
+     */
+
+    if (!last) {
+        if (pos.column - 1 <= depth * 2) {
+            return consolidate(depth, relative);
+        }
+
+        return 'atx-closed';
+    }
+
+    if (final.line + 1 === pos.line) {
+        return 'setext';
+    }
+
+    if (final.column + depth < pos.column) {
+        return 'atx-closed';
+    }
+
+    return consolidate(depth, relative);
+}
+
+/*
+ * Expose.
+ */
+
+module.exports = style;

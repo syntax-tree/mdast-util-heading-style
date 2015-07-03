@@ -1,0 +1,6 @@
+build/
+components/
+coverage/
+build.js
+mdast-util-heading-style.js
+mdast-util-heading-style.min.js
