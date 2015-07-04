@@ -18,8 +18,9 @@
  *   consolidate(3, 'setext') // 'setext'
  *   consolidate(3, 'atx') // 'atx'
  *
- * @param {number} depth
- * @param {string?} relative
+ * @private
+ * @param {number} depth - Depth of heading.
+ * @param {string?} relative - Preferred style.
  * @return {string?} - Type.
  */
 function consolidate(depth, relative) {
@@ -30,7 +31,16 @@ function consolidate(depth, relative) {
 /**
  * Check the style of a heading.
  *
- * @param {Node} node
+ * @example
+ *   style(); // null
+ *
+ *   style(mdast.parse('# foo').children[0]); // 'atx'
+ *
+ *   style(mdast.parse('# foo #').children[0]); // 'atx-closed'
+ *
+ *   style(mdast.parse('foo\n===').children[0]); // 'setext'
+ *
+ * @param {Node} node - Node to check.
  * @param {string?} relative - Heading type which we'd wish
  *   this to be.
  * @return {string?} - Type, either `'atx-closed'`,
