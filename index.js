@@ -1,8 +1,8 @@
 /**
  * @author Titus Wormer
  * @copyright 2015 Titus Wormer. All rights reserved.
- * @module mdast-util-heading-style
- * @fileoverview Utility to get the style of a heading.
+ * @module mdast:util:heading-style
+ * @fileoverview Utility to get the style of an mdast heading.
  */
 
 'use strict';

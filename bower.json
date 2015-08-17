@@ -1,7 +1,7 @@
 {
   "name": "mdast-util-heading-style",
   "main": "mdast-util-heading-style.js",
-  "description": "Utility to get the style of a heading",
+  "description": "Utility to get the style of an mdast heading",
   "license": "MIT",
   "keywords": [
     "mdast",

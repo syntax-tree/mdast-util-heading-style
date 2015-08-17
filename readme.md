@@ -1,6 +1,6 @@
 # mdast-util-heading-style [![Build Status](https://img.shields.io/travis/wooorm/mdast-util-heading-style.svg?style=flat)](https://travis-ci.org/wooorm/mdast-util-heading-style) [![Coverage Status](https://img.shields.io/coveralls/wooorm/mdast-util-heading-style.svg?style=flat)](https://coveralls.io/r/wooorm/mdast-util-heading-style?branch=master)
 
-[**mdast**](https://github.com/wooorm/mdast) utility to get the style of a
+Utility to get the style of an [**mdast**](https://github.com/wooorm/mdast)
 heading.
 
 ## Installation
