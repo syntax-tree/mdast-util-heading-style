@@ -1,4 +1,4 @@
-# mdast-util-heading-style [![Build Status](https://img.shields.io/travis/wooorm/mdast-util-heading-style.svg?style=flat)](https://travis-ci.org/wooorm/mdast-util-heading-style) [![Coverage Status](https://img.shields.io/coveralls/wooorm/mdast-util-heading-style.svg?style=flat)](https://coveralls.io/r/wooorm/mdast-util-heading-style?branch=master)
+# mdast-util-heading-style [![Build Status](https://img.shields.io/travis/wooorm/mdast-util-heading-style.svg)](https://travis-ci.org/wooorm/mdast-util-heading-style) [![Coverage Status](https://img.shields.io/codecov/c/github/wooorm/mdast-util-heading-style.svg)](https://codecov.io/github/wooorm/mdast-util-heading-style)
 
 Utility to get the style of an [**mdast**](https://github.com/wooorm/mdast)
 heading.
