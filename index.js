@@ -1,11 +1,14 @@
 /**
  * @author Titus Wormer
- * @copyright 2015 Titus Wormer. All rights reserved.
+ * @copyright 2015 Titus Wormer
+ * @license MIT
  * @module mdast:util:heading-style
  * @fileoverview Utility to get the style of an mdast heading.
  */
 
 'use strict';
+
+/* eslint-env node */
 
 /**
  * Get the probable style of an atx-heading, depending on

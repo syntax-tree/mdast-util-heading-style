@@ -1,3 +1,15 @@
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module mdast:util:heading-style
+ * @fileoverview Test suit for `mdast-util-heading-style`.
+ */
+
+'use strict';
+
+/* eslint-env node */
+
 'use strict';
 
 /* eslint-env node */
