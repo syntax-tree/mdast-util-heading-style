@@ -1,4 +1,4 @@
-{
+  {
   "name": "mdast-util-heading-style",
   "version": "1.0.0",
   "description": "Utility to get the style of an mdast heading",
@@ -12,11 +12,16 @@
     "util",
     "utility"
   ],
-  "repository": "wooorm/mdast-util-heading-style",
-  "author": "Titus Wormer <tituswormer@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wooorm/mdast-util-heading-style.git"
+  },
+  "bugs": "https://github.com/wooorm/mdast-util-heading-style/issues",
+  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "files": [
     "index.js"
   ],
+  "dependencies": {},
   "devDependencies": {
     "browserify": "^13.0.0",
     "eslint": "^1.0.0",
