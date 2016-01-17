@@ -1,19 +1,18 @@
-# mdast-util-heading-style [![Build Status](https://img.shields.io/travis/wooorm/mdast-util-heading-style.svg)](https://travis-ci.org/wooorm/mdast-util-heading-style) [![Coverage Status](https://img.shields.io/codecov/c/github/wooorm/mdast-util-heading-style.svg)](https://codecov.io/github/wooorm/mdast-util-heading-style)
+# mdast-util-heading-style [![Build Status][travis-badge]][travis] [![Coverage Status][coverage-badge]][coverage]
 
-Utility to get the style of an [**mdast**](https://github.com/wooorm/mdast)
-heading.
+Utility to get the style of an [**mdast**][mdast] heading.
 
 ## Installation
 
-[npm](https://docs.npmjs.com/cli/install):
+[npm][npm-install]:
 
 ```bash
 npm install mdast-util-heading-style
 ```
 
-**mdast-util-heading-style** is also available for [duo](http://duojs.org/#getting-started),
-and as an AMD, CommonJS, and globals module, [uncompressed and
-compressed](https://github.com/wooorm/mdast-util-heading-style/releases).
+**mdast-util-heading-style** is also available for [duo][],
+and as an AMD, CommonJS, and globals module,
+[uncompressed and compressed][releases].
 
 ## Usage
 
@@ -26,25 +25,50 @@ style(remark.parse('# ATX #\n').children[0]); // 'atx-closed'
 style(remark.parse('ATX\n===').children[0]); // 'setext'
 
 style(remark.parse('### ATX').children[0]); // null
-style(remark.parse('### ATX').children[0], 'setext'); // 'atx'
+style(remark.parse('### ATX').children[0], 'setext'); // 'setext'
 ```
 
 ## API
 
-### style(node\[, relative])
+### `style(node[, relative])`
 
 Get the heading style of a node.
 
-Parameters:
+**Parameters**:
 
-*   `node` ([`Node`](https://github.com/wooorm/mdast/blob/master/doc/nodes.md));
+*   `node` ([`Node`][mdast-node]);
 
 *   `relative` (`string`, optional) — Style to use for ambiguous headings
     (atx-headings with a level of three or more could also be setext).
 
-Return: `string` (`'atx'`, `'atx-closed'`, or `'setext'`). When an ambiguous
-heading is found, either `relative` or `null` is returned.
+**Returns**: `string` (`'atx'`, `'atx-closed'`, or `'setext'`)
+— When an ambiguous heading is found, either `relative` or `null` is
+returned.
 
 ## License
 
-[MIT](LICENSE) © [Titus Wormer](http://wooorm.com)
+[MIT][license] © [Titus Wormer][home]
+
+<!-- Definitions -->
+
+[travis-badge]: https://img.shields.io/travis/wooorm/mdast-util-heading-style.svg
+
+[travis]: https://travis-ci.org/wooorm/mdast-util-heading-style
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/wooorm/mdast-util-heading-style.svg
+
+[coverage]: https://codecov.io/github/wooorm/mdast-util-heading-style
+
+[mdast]: https://github.com/wooorm/mdast
+
+[mdast-node]: https://github.com/wooorm/mdast#node
+
+[npm-install]: https://docs.npmjs.com/cli/install
+
+[duo]: http://duojs.org/#getting-started
+
+[releases]: https://github.com/wooorm/mdast-util-heading-style/releases
+
+[license]: LICENSE
+
+[home]: http://wooorm.com
