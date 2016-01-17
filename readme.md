@@ -11,10 +11,8 @@ heading.
 npm install mdast-util-heading-style
 ```
 
-**mdast-util-heading-style** is also available for [bower](http://bower.io/#install-packages),
-[component](https://github.com/componentjs/component), and
-[duo](http://duojs.org/#getting-started), and as an AMD, CommonJS, and globals
-module, [uncompressed](mdast-util-heading-style.js) and
+**mdast-util-heading-style** is also available for [duo](http://duojs.org/#getting-started),
+and as an AMD, CommonJS, and globals module, [uncompressed](mdast-util-heading-style.js) and
 [compressed](mdast-util-heading-style.min.js).
 
 ## Usage
