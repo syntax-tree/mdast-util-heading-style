@@ -7,7 +7,7 @@
  */
 
 var style = require('./index.js');
-var mdast = require('mdast');
+var remark = require('remark');
 var assert = require('assert');
 
 /*
@@ -41,64 +41,64 @@ describe('mdast-util-heading-style', function () {
     });
 
     it('should work', function () {
-        equal(style(mdast.parse('# ATX').children[0]), 'atx');
+        equal(style(remark.parse('# ATX').children[0]), 'atx');
 
-        equal(style(mdast.parse('# ATX #').children[0]), 'atx-closed');
+        equal(style(remark.parse('# ATX #').children[0]), 'atx-closed');
 
-        equal(style(mdast.parse('ATX\n===').children[0]), 'setext');
+        equal(style(remark.parse('ATX\n===').children[0]), 'setext');
     });
 
     it('should work on ambiguous nodes', function () {
-        equal(style(mdast.parse('### ATX').children[0]), null);
+        equal(style(remark.parse('### ATX').children[0]), null);
 
-        equal(style(mdast.parse('### ATX').children[0], 'atx'), 'atx');
+        equal(style(remark.parse('### ATX').children[0], 'atx'), 'atx');
 
-        equal(style(mdast.parse('### ATX').children[0], 'setext'), 'setext');
+        equal(style(remark.parse('### ATX').children[0], 'setext'), 'setext');
     });
 
     it('should work on empty nodes', function () {
         equal(
-            style(mdast.parse('###### ######').children[0]),
+            style(remark.parse('###### ######').children[0]),
             'atx-closed'
         );
 
         equal(
-            style(mdast.parse('### ###').children[0]),
+            style(remark.parse('### ###').children[0]),
             'atx-closed'
         );
 
         equal(
-            style(mdast.parse('# #').children[0]),
+            style(remark.parse('# #').children[0]),
             'atx-closed'
         );
 
         equal(
-            style(mdast.parse('###### ').children[0], 'atx'),
+            style(remark.parse('###### ').children[0], 'atx'),
             'atx'
         );
 
         equal(
-            style(mdast.parse('### ').children[0], 'atx'),
+            style(remark.parse('### ').children[0], 'atx'),
             'atx'
         );
 
         equal(
-            style(mdast.parse('# ').children[0], 'setext'),
+            style(remark.parse('# ').children[0], 'setext'),
             'atx'
         );
 
         equal(
-            style(mdast.parse('###### ').children[0], 'setext'),
+            style(remark.parse('###### ').children[0], 'setext'),
             'setext'
         );
 
         equal(
-            style(mdast.parse('### ').children[0], 'setext'),
+            style(remark.parse('### ').children[0], 'setext'),
             'setext'
         );
 
         equal(
-            style(mdast.parse('# ').children[0], 'setext'),
+            style(remark.parse('# ').children[0], 'setext'),
             'atx'
         );
     });

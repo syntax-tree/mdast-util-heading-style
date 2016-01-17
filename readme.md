@@ -20,31 +20,31 @@ module, [uncompressed](mdast-util-heading-style.js) and
 ## Usage
 
 ```js
-var mdast = require('mdast');
-var style = require('mdast-util-visit');
+var remark = require('remark');
+var style = require('mdast-util-heading-style');
 
-style(mdast.parse('# ATX').children[0]); // 'atx'
-style(mdast.parse('# ATX #\n').children[0]); // 'atx-closed'
-style(mdast.parse('ATX\n===').children[0]); // 'setext'
+style(remark.parse('# ATX').children[0]); // 'atx'
+style(remark.parse('# ATX #\n').children[0]); // 'atx-closed'
+style(remark.parse('ATX\n===').children[0]); // 'setext'
 
-style(mdast.parse('### ATX').children[0]); // null
-style(mdast.parse('### ATX').children[0], 'setext'); // 'atx'
+style(remark.parse('### ATX').children[0]); // null
+style(remark.parse('### ATX').children[0], 'setext'); // 'atx'
 ```
 
 ## API
 
-### style(node\[, relative\])
+### style(node\[, relative])
 
 Get the heading style of a node.
 
 Parameters:
 
-*   `node` (`Node`) — [**mdast** node](https://github.com/wooorm/mdast/blob/master/doc/nodes.md);
+*   `node` ([`Node`](https://github.com/wooorm/mdast/blob/master/doc/nodes.md));
 
 *   `relative` (`string`, optional) — Style to use for ambiguous headings
     (atx-headings with a level of three or more could also be setext).
 
-Return: `string` (`"atx"`, `"atx-closed"`, or `"setext"`). When an ambiguous
+Return: `string` (`'atx'`, `'atx-closed'`, or `'setext'`). When an ambiguous
 heading is found, either `relative` or `null` is returned.
 
 ## License
