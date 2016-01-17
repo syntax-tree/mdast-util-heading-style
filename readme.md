@@ -12,8 +12,8 @@ npm install mdast-util-heading-style
 ```
 
 **mdast-util-heading-style** is also available for [duo](http://duojs.org/#getting-started),
-and as an AMD, CommonJS, and globals module, [uncompressed](mdast-util-heading-style.js) and
-[compressed](mdast-util-heading-style.min.js).
+and as an AMD, CommonJS, and globals module, [uncompressed and
+compressed](https://github.com/wooorm/mdast-util-heading-style/releases).
 
 ## Usage
 
