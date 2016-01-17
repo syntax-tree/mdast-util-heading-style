@@ -1,35 +1,29 @@
 'use strict';
 
-/* eslint-env mocha */
+/* eslint-env node */
 
 /*
  * Dependencies.
  */
 
-var style = require('./index.js');
+var test = require('tape');
 var remark = require('remark');
-var assert = require('assert');
-
-/*
- * Methods.
- */
-
-var throws = assert.throws;
-var equal = assert.strictEqual;
+var style = require('./index.js');
 
 /*
  * Tests.
  */
 
-describe('mdast-util-heading-style', function () {
-    it('should fail without node', function () {
-        throws(function () {
+test('mdast-util-heading-style', function (t) {
+    t.throws(
+        function () {
             style();
-        });
-    });
+        },
+        'should fail without node'
+    );
 
-    it('should NOT fail on undetectable nodes', function () {
-        equal(null, style({
+    t.equal(
+         style({
             'type': 'heading',
             'children': [
                 {
@@ -37,69 +31,100 @@ describe('mdast-util-heading-style', function () {
                     'value': 'foo'
                 }
             ]
-        }));
-    });
+        }),
+        null,
+        'should NOT fail on undetectable nodes'
+    );
 
-    it('should work', function () {
-        equal(style(remark.parse('# ATX').children[0]), 'atx');
+    t.equal(
+        style(remark.parse('# ATX').children[0]),
+        'atx',
+        'should detect atx'
+    );
 
-        equal(style(remark.parse('# ATX #').children[0]), 'atx-closed');
+    t.equal(
+        style(remark.parse('# ATX #').children[0]),
+        'atx-closed',
+        'should detect closed atx'
+    );
 
-        equal(style(remark.parse('ATX\n===').children[0]), 'setext');
-    });
+    t.equal(
+        style(remark.parse('ATX\n===').children[0]),
+        'setext',
+        'should detect closed setext'
+    );
 
-    it('should work on ambiguous nodes', function () {
-        equal(style(remark.parse('### ATX').children[0]), null);
+    t.equal(
+        style(remark.parse('### ATX').children[0]),
+        null,
+        'should work on ambiguous nodes'
+    );
 
-        equal(style(remark.parse('### ATX').children[0], 'atx'), 'atx');
+    t.equal(
+        style(remark.parse('### ATX').children[0], 'atx'),
+        'atx',
+        'should work on ambiguous nodes (preference to atx)'
+    );
 
-        equal(style(remark.parse('### ATX').children[0], 'setext'), 'setext');
-    });
+    t.equal(
+        style(remark.parse('### ATX').children[0], 'setext'),
+        'setext',
+        'should work on ambiguous nodes (preference to setext)'
+    );
 
-    it('should work on empty nodes', function () {
-        equal(
-            style(remark.parse('###### ######').children[0]),
-            'atx-closed'
-        );
+    t.equal(
+        style(remark.parse('###### ######').children[0]),
+        'atx-closed',
+        'should work on empty nodes (#1)'
+    );
 
-        equal(
-            style(remark.parse('### ###').children[0]),
-            'atx-closed'
-        );
+    t.equal(
+        style(remark.parse('### ###').children[0]),
+        'atx-closed',
+        'should work on empty nodes (#2)'
+    );
 
-        equal(
-            style(remark.parse('# #').children[0]),
-            'atx-closed'
-        );
+    t.equal(
+        style(remark.parse('# #').children[0]),
+        'atx-closed',
+        'should work on empty nodes (#3)'
+    );
 
-        equal(
-            style(remark.parse('###### ').children[0], 'atx'),
-            'atx'
-        );
+    t.equal(
+        style(remark.parse('###### ').children[0], 'atx'),
+        'atx',
+        'should work on empty nodes (#4)'
+    );
 
-        equal(
-            style(remark.parse('### ').children[0], 'atx'),
-            'atx'
-        );
+    t.equal(
+        style(remark.parse('### ').children[0], 'atx'),
+        'atx',
+        'should work on empty nodes (#5)'
+    );
 
-        equal(
-            style(remark.parse('# ').children[0], 'setext'),
-            'atx'
-        );
+    t.equal(
+        style(remark.parse('## ').children[0]),
+        'atx',
+        'should work on empty nodes (#6)'
+    );
 
-        equal(
-            style(remark.parse('###### ').children[0], 'setext'),
-            'setext'
-        );
+    t.equal(
+        style(remark.parse('###### ').children[0], 'setext'),
+        'setext',
+        'should work on empty nodes (#7)'
+    );
 
-        equal(
-            style(remark.parse('### ').children[0], 'setext'),
-            'setext'
-        );
+    t.equal(
+        style(remark.parse('### ').children[0], 'setext'),
+        'setext',
+        'should work on empty nodes (#8)'
+    );
 
-        equal(
-            style(remark.parse('# ').children[0], 'setext'),
-            'atx'
-        );
-    });
+    t.equal(
+        style(remark.parse('## ').children[0], 'setext'),
+        'atx',
+        'should work on empty nodes (#9)'
+    );
+
+    t.end();
 });
