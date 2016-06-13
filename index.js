@@ -36,11 +36,11 @@ function consolidate(depth, relative) {
  * @example
  *   style(); // null
  *
- *   style(remark.parse('# foo').children[0]); // 'atx'
+ *   style(remark().parse('# foo').children[0]); // 'atx'
  *
- *   style(remark.parse('# foo #').children[0]); // 'atx-closed'
+ *   style(remark().parse('# foo #').children[0]); // 'atx-closed'
  *
- *   style(remark.parse('foo\n===').children[0]); // 'setext'
+ *   style(remark().parse('foo\n===').children[0]); // 'setext'
  *
  * @param {Node} node - Node to check.
  * @param {string?} relative - Heading type which we'd wish

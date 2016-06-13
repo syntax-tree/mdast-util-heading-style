@@ -17,8 +17,8 @@ and as an AMD, CommonJS, and globals module,
 ## Usage
 
 ```js
-var remark = require('remark');
 var style = require('mdast-util-heading-style');
+var remark = require('remark')();
 
 style(remark.parse('# ATX').children[0]); // 'atx'
 style(remark.parse('# ATX #\n').children[0]); // 'atx-closed'
