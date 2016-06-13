@@ -10,9 +10,8 @@ Utility to get the style of an [**mdast**][mdast] heading.
 npm install mdast-util-heading-style
 ```
 
-**mdast-util-heading-style** is also available for [duo][],
-and as an AMD, CommonJS, and globals module,
-[uncompressed and compressed][releases].
+**mdast-util-heading-style** is also available as an AMD, CommonJS, and
+globals module, [uncompressed and compressed][releases].
 
 ## Usage
 
@@ -64,8 +63,6 @@ returned.
 [mdast-node]: https://github.com/wooorm/mdast#node
 
 [npm-install]: https://docs.npmjs.com/cli/install
-
-[duo]: http://duojs.org/#getting-started
 
 [releases]: https://github.com/wooorm/mdast-util-heading-style/releases
 
