@@ -1,7 +1,5 @@
 # mdast-util-heading-style [![Build Status][build-badge]][build-status] [![Coverage Status][coverage-badge]][coverage-status] [![Chat][chat-badge]][chat]
 
-<!--lint disable list-item-spacing heading-increment list-item-indent-->
-
 Get the style of an [**MDAST**][mdast] heading.
 
 ## Installation
@@ -11,9 +9,6 @@ Get the style of an [**MDAST**][mdast] heading.
 ```bash
 npm install mdast-util-heading-style
 ```
-
-**mdast-util-heading-style** is also available as an AMD, CommonJS, and
-globals module, [uncompressed and compressed][releases].
 
 ## Usage
 
@@ -75,8 +70,6 @@ A comment marker.
 [chat-badge]: https://img.shields.io/gitter/room/wooorm/remark.svg
 
 [chat]: https://gitter.im/wooorm/remark
-
-[releases]: https://github.com/wooorm/mdast-util-heading-style/releases
 
 [license]: LICENSE
 
