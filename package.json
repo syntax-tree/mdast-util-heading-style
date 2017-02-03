@@ -14,9 +14,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/wooorm/mdast-util-heading-style.git"
+    "url": "https://github.com/syntax-tree/mdast-util-heading-style.git"
   },
-  "bugs": "https://github.com/wooorm/mdast-util-heading-style/issues",
+  "bugs": "https://github.com/syntax-tree/mdast-util-heading-style/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"

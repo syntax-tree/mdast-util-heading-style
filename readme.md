@@ -59,13 +59,13 @@ A comment marker.
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/wooorm/mdast-util-heading-style.svg
+[build-badge]: https://img.shields.io/travis/syntax-tree/mdast-util-heading-style.svg
 
-[build-status]: https://travis-ci.org/wooorm/mdast-util-heading-style
+[build-status]: https://travis-ci.org/syntax-tree/mdast-util-heading-style
 
-[coverage-badge]: https://img.shields.io/codecov/c/github/wooorm/mdast-util-heading-style.svg
+[coverage-badge]: https://img.shields.io/codecov/c/github/syntax-tree/mdast-util-heading-style.svg
 
-[coverage-status]: https://codecov.io/github/wooorm/mdast-util-heading-style
+[coverage-status]: https://codecov.io/github/syntax-tree/mdast-util-heading-style
 
 [chat-badge]: https://img.shields.io/gitter/room/wooorm/remark.svg
 
@@ -77,6 +77,6 @@ A comment marker.
 
 [npm]: https://docs.npmjs.com/cli/install
 
-[mdast]: https://github.com/wooorm/mdast
+[mdast]: https://github.com/syntax-tree/mdast
 
-[node]: https://github.com/wooorm/mdast#node
+[node]: https://github.com/syntax-tree/unist#node
