@@ -32,9 +32,9 @@ Get the heading style of a node.
 
 ###### Parameters
 
-*   `node` ([`Node`][node]) — Node to parse;
+*   `node` ([`Node`][node]) — Node to parse
 *   `relative` (`string`, optional) — Style to use for ambiguous headings
-    (atx-headings with a level of three or more could also be setext).
+    (atx-headings with a level of three or more could also be setext)
 
 ###### Returns
 
