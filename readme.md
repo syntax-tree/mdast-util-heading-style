@@ -41,18 +41,6 @@ Get the heading style of a node.
 `string` (`'atx'`, `'atx-closed'`, or `'setext'`) — When an ambiguous
 heading is found, either `relative` or `null` is returned.
 
-### `Marker`
-
-A comment marker.
-
-###### Properties
-
-*   `name` (`string`) — Name of marker;
-*   `attributes` (`string`) — Value after name;
-*   `parameters` (`Object`) — Parsed attributes, tries to convert
-    values to numbers and booleans when possible;
-*   `node` ([`Node`][node]) — Reference to given node.
-
 ## License
 
 [MIT][license] © [Titus Wormer][author]
