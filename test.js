@@ -2,7 +2,7 @@
 
 var test = require('tape');
 var remark = require('remark')();
-var style = require('./index.js');
+var style = require('.');
 
 test('mdast-util-heading-style', function (t) {
   t.throws(
