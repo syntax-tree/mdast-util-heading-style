@@ -13,15 +13,15 @@ npm install mdast-util-heading-style
 ## Usage
 
 ```js
-var style = require('mdast-util-heading-style');
-var remark = require('remark')();
+var style = require('mdast-util-heading-style')
+var remark = require('remark')()
 
-style(remark.parse('# ATX').children[0]); // 'atx'
-style(remark.parse('# ATX #\n').children[0]); // 'atx-closed'
-style(remark.parse('ATX\n===').children[0]); // 'setext'
+style(remark.parse('# ATX').children[0]) // => 'atx'
+style(remark.parse('# ATX #\n').children[0]) // => 'atx-closed'
+style(remark.parse('ATX\n===').children[0]) // => 'setext'
 
-style(remark.parse('### ATX').children[0]); // null
-style(remark.parse('### ATX').children[0], 'setext'); // 'setext'
+style(remark.parse('### ATX').children[0]) // => null
+style(remark.parse('### ATX').children[0], 'setext') // => 'setext'
 ```
 
 ## API
