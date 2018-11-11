@@ -5,7 +5,7 @@
 [![Downloads][downloads-badge]][downloads]
 [![Chat][chat-badge]][chat]
 
-Get the style of an [**MDAST**][mdast] heading.
+Get the style of [**mdast**][mdast] headings.
 
 ## Installation
 
