@@ -41,6 +41,6 @@ function consolidate(depth, relative) {
   return depth < 3
     ? 'atx'
     : relative === 'atx' || relative === 'setext'
-      ? relative
-      : null
+    ? relative
+    : null
 }
