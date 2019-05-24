@@ -12,10 +12,9 @@ function style(node, relative) {
     return null
   }
 
-  /* This can only occur for `'atx'` and `'atx-closed'`
-   * headings.  This might incorrectly match `'atx'`
-   * headings with lots of trailing white space as an
-   * `'atx-closed'` heading. */
+  // This can only occur for `'atx'` and `'atx-closed'` headings.
+  // This might incorrectly match `'atx'` headings with lots of trailing white
+  // space as an `'atx-closed'` heading.
   if (!last) {
     if (pos.column - 1 <= depth * 2) {
       return consolidate(depth, relative)
@@ -35,8 +34,7 @@ function style(node, relative) {
   return consolidate(depth, relative)
 }
 
-/* Get the probable style of an atx-heading, depending on
- * preferred style. */
+// Get the probable style of an atx-heading, depending on preferred style.
 function consolidate(depth, relative) {
   return depth < 3
     ? 'atx'
