@@ -8,13 +8,13 @@
 [![Backers][backers-badge]][collective]
 [![Chat][chat-badge]][chat]
 
-Get the style of [**mdast**][mdast] headings.
+[**mdast**][mdast] utility to get the style of a heading.
 
-## Installation
+## Install
 
 [npm][]:
 
-```bash
+```sh
 npm install mdast-util-heading-style
 ```
 
@@ -51,11 +51,13 @@ heading is found, either `relative` or `null` is returned.
 
 ## Contribute
 
-See [`contributing.md` in `syntax-tree/mdast`][contributing] for ways to get
+See [`contributing.md` in `syntax-tree/.github`][contributing] for ways to get
 started.
+See [`support.md`][support] for ways to get help.
 
-This organisation has a [Code of Conduct][coc].  By interacting with this
-repository, organisation, or community you agree to abide by its terms.
+This project has a [Code of Conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
 
 ## License
 
@@ -95,10 +97,12 @@ repository, organisation, or community you agree to abide by its terms.
 
 [npm]: https://docs.npmjs.com/cli/install
 
+[contributing]: https://github.com/syntax-tree/.github/blob/master/contributing.md
+
+[support]: https://github.com/syntax-tree/.github/blob/master/support.md
+
+[coc]: https://github.com/syntax-tree/.github/blob/master/code-of-conduct.md
+
 [mdast]: https://github.com/syntax-tree/mdast
 
 [node]: https://github.com/syntax-tree/unist#node
-
-[contributing]: https://github.com/syntax-tree/mdast/blob/master/contributing.md
-
-[coc]: https://github.com/syntax-tree/mdast/blob/master/code-of-conduct.md
