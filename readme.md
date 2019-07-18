@@ -49,6 +49,11 @@ Get the heading style of a node.
 `string` (`'atx'`, `'atx-closed'`, or `'setext'`) — When an ambiguous
 heading is found, either `relative` or `null` is returned.
 
+## Security
+
+Use of `mdast-util-heading-range` does not involve [**hast**][hast] so there are
+no openings for [cross-site scripting (XSS)][xss] attacks.
+
 ## Contribute
 
 See [`contributing.md` in `syntax-tree/.github`][contributing] for ways to get
@@ -106,3 +111,7 @@ abide by its terms.
 [mdast]: https://github.com/syntax-tree/mdast
 
 [node]: https://github.com/syntax-tree/unist#node
+
+[xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
+
+[hast]: https://github.com/syntax-tree/hast
