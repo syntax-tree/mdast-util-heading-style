@@ -51,7 +51,7 @@ heading is found, either `relative` or `null` is returned.
 
 ## Security
 
-Use of `mdast-util-heading-range` does not involve [**hast**][hast] so there are
+Use of `mdast-util-heading-style` does not involve [**hast**][hast] so there are
 no openings for [cross-site scripting (XSS)][xss] attacks.
 
 ## Contribute
