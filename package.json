@@ -1,6 +1,6 @@
 {
   "name": "mdast-util-heading-style",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "mdast utility to get the style of a heading",
   "license": "MIT",
   "keywords": [
