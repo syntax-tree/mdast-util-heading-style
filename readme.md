@@ -18,18 +18,21 @@
 npm install mdast-util-heading-style
 ```
 
-## Usage
+## Use
 
 ```js
 var style = require('mdast-util-heading-style')
-var remark = require('remark')()
+var unified = require('unified')
+var parse = require('remark-parse')
 
-style(remark.parse('# ATX').children[0]) // => 'atx'
-style(remark.parse('# ATX #\n').children[0]) // => 'atx-closed'
-style(remark.parse('ATX\n===').children[0]) // => 'setext'
+var processor = unified().use(parse)
 
-style(remark.parse('### ATX').children[0]) // => null
-style(remark.parse('### ATX').children[0], 'setext') // => 'setext'
+style(processor.parse('# ATX').children[0]) // => 'atx'
+style(processor.parse('# ATX #\n').children[0]) // => 'atx-closed'
+style(processor.parse('ATX\n===').children[0]) // => 'setext'
+
+style(processor.parse('### ATX').children[0]) // => null
+style(processor.parse('### ATX').children[0], 'setext') // => 'setext'
 ```
 
 ## API
@@ -60,8 +63,8 @@ See [`contributing.md` in `syntax-tree/.github`][contributing] for ways to get
 started.
 See [`support.md`][support] for ways to get help.
 
-This project has a [Code of Conduct][coc].
-By interacting with this repository, organisation, or community you agree to
+This project has a [code of conduct][coc].
+By interacting with this repository, organization, or community you agree to
 abide by its terms.
 
 ## License
@@ -92,7 +95,7 @@ abide by its terms.
 
 [collective]: https://opencollective.com/unified
 
-[chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
+[chat-badge]: https://img.shields.io/badge/chat-spectrum-7b16ff.svg
 
 [chat]: https://spectrum.chat/unified/syntax-tree
 
