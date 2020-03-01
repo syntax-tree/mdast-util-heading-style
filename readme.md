@@ -57,6 +57,13 @@ heading is found, either `relative` or `null` is returned.
 Use of `mdast-util-heading-style` does not involve [**hast**][hast] so there are
 no openings for [cross-site scripting (XSS)][xss] attacks.
 
+## Related
+
+*   [`mdast-normalize-headings`](https://github.com/syntax-tree/mdast-normalize-headings)
+    — make sure there is no more than a single top-level heading
+*   [`mdast-util-heading-range`](https://github.com/syntax-tree/mdast-util-heading-range)
+    — use headings as ranges
+
 ## Contribute
 
 See [`contributing.md` in `syntax-tree/.github`][contributing] for ways to get
