@@ -12,6 +12,9 @@
 
 ## Install
 
+This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
+Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
+
 [npm][]:
 
 ```sh
@@ -21,23 +24,26 @@ npm install mdast-util-heading-style
 ## Use
 
 ```js
-var style = require('mdast-util-heading-style')
-var unified = require('unified')
-var parse = require('remark-parse')
+import unified from 'unified'
+import remarkParse from 'remark-parse'
+import {headingStyle} from 'mdast-util-heading-style'
 
-var processor = unified().use(parse)
+var processor = unified().use(remarkParse)
 
-style(processor.parse('# ATX').children[0]) // => 'atx'
-style(processor.parse('# ATX #\n').children[0]) // => 'atx-closed'
-style(processor.parse('ATX\n===').children[0]) // => 'setext'
+headingStyle(processor.parse('# ATX').children[0]) // => 'atx'
+headingStyle(processor.parse('# ATX #\n').children[0]) // => 'atx-closed'
+headingStyle(processor.parse('ATX\n===').children[0]) // => 'setext'
 
-style(processor.parse('### ATX').children[0]) // => null
-style(processor.parse('### ATX').children[0], 'setext') // => 'setext'
+headingStyle(processor.parse('### ATX').children[0]) // => null
+headingStyle(processor.parse('### ATX').children[0], 'setext') // => 'setext'
 ```
 
 ## API
 
-### `style(node[, relative])`
+This package exports the following identifiers: `headingStyle`.
+There is no default export.
+
+### `headingStyle(node[, relative])`
 
 Get the heading style of a node.
 

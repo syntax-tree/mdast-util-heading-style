@@ -1,5 +1,2 @@
 coverage/
-mdast-util-heading-style.js
-mdast-util-heading-style.min.js
-*.json
 *.md

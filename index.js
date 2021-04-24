@@ -1,8 +1,4 @@
-'use strict'
-
-module.exports = style
-
-function style(node, relative) {
+export function headingStyle(node, relative) {
   var last = node.children[node.children.length - 1]
   var depth = node.depth
   var pos = node && node.position && node.position.end
