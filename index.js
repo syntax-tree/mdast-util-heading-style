@@ -1,3 +1,13 @@
+/**
+ * @typedef {import('mdast').Heading} Heading
+ * @typedef {'atx'|'atx-closed'|'setext'} Style
+ */
+
+/**
+ * @param {Heading} node
+ * @param {Style} [relative]
+ * @returns {Style|null}
+ */
 export function headingStyle(node, relative) {
   var last = node.children[node.children.length - 1]
   var depth = node.depth
@@ -30,7 +40,13 @@ export function headingStyle(node, relative) {
   return consolidate(depth, relative)
 }
 
-// Get the probable style of an atx-heading, depending on preferred style.
+/**
+ * Get the probable style of an atx-heading, depending on preferred style.
+ *
+ * @param {number} depth
+ * @param {Style} relative
+ * @returns {Style|null}
+ */
 function consolidate(depth, relative) {
   return depth < 3
     ? 'atx'

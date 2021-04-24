@@ -4,10 +4,12 @@ import {headingStyle} from './index.js'
 
 test('headingStyle', function (t) {
   t.throws(function () {
+    // @ts-ignore runtime.
     headingStyle()
   }, 'should fail without node')
 
   t.equal(
+    // @ts-ignore runtime.
     headingStyle({
       type: 'heading',
       children: [{type: 'text', value: 'foo'}]
