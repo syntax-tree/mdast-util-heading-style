@@ -7,8 +7,8 @@ import test from 'tape'
 import remark from 'remark'
 import {headingStyle} from './index.js'
 
-test('headingStyle', function (t) {
-  t.throws(function () {
+test('headingStyle', (t) => {
+  t.throws(() => {
     // @ts-ignore runtime.
     headingStyle()
   }, 'should fail without node')

@@ -9,10 +9,10 @@
  * @returns {Style|null}
  */
 export function headingStyle(node, relative) {
-  var last = node.children[node.children.length - 1]
-  var depth = node.depth
-  var pos = node && node.position && node.position.end
-  var final = last && last.position && last.position.end
+  const last = node.children[node.children.length - 1]
+  const depth = node.depth
+  const pos = node && node.position && node.position.end
+  const final = last && last.position && last.position.end
 
   if (!pos) {
     return null

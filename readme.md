@@ -24,11 +24,11 @@ npm install mdast-util-heading-style
 ## Use
 
 ```js
-import unified from 'unified'
-import remarkParse from 'remark-parse'
+import {unified} from 'unified'
 import {headingStyle} from 'mdast-util-heading-style'
+import remarkParse from 'remark-parse'
 
-var processor = unified().use(remarkParse)
+const processor = unified().use(remarkParse)
 
 headingStyle(processor.parse('# ATX').children[0]) // => 'atx'
 headingStyle(processor.parse('# ATX #\n').children[0]) // => 'atx-closed'
