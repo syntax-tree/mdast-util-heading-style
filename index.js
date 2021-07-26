@@ -29,11 +29,11 @@ export function headingStyle(node, relative) {
     return 'atx-closed'
   }
 
-  if (final.line + 1 === pos.line) {
+  if (final && final.line + 1 === pos.line) {
     return 'setext'
   }
 
-  if (final.column + depth < pos.column) {
+  if (final && final.column + depth < pos.column) {
     return 'atx-closed'
   }
 
@@ -44,7 +44,7 @@ export function headingStyle(node, relative) {
  * Get the probable style of an atx-heading, depending on preferred style.
  *
  * @param {number} depth
- * @param {Style} relative
+ * @param {Style|undefined} relative
  * @returns {Style|null}
  */
 function consolidate(depth, relative) {
