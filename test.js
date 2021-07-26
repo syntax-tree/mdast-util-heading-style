@@ -2,7 +2,7 @@
  * @typedef {import('mdast').Root} Root
  */
 
-import assert from 'assert'
+import assert from 'node:assert'
 import test from 'tape'
 import remark from 'remark'
 import {headingStyle} from './index.js'
