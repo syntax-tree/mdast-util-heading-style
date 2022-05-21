@@ -4,7 +4,7 @@
 
 import assert from 'node:assert'
 import test from 'tape'
-import remark from 'remark'
+import {remark} from 'remark'
 import {headingStyle} from './index.js'
 
 test('headingStyle', (t) => {
