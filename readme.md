@@ -8,59 +8,110 @@
 [![Backers][backers-badge]][collective]
 [![Chat][chat-badge]][chat]
 
-[**mdast**][mdast] utility to get the style of a heading.
+[mdast][] utility to get the style of a heading.
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`headingStyle(node[, relative])`](#headingstylenode-relative)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Related](#related)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package is a tiny utility to figure out if a heading was written as ATX or
+as setext.
+
+```markdown
+## ATX uses hashes
+
+Setext uses an underline
+------------------------
+```
+
+## When should I use this?
+
+Probably not a lot!
+It’s used in [`remark-lint`][remark-lint].
 
 ## Install
 
-This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
-Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
-
-[npm][]:
+This package is [ESM only][esm].
+In Node.js (version 12.20+, 14.14+, or 16.0+), install with [npm][]:
 
 ```sh
 npm install mdast-util-heading-style
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {headingStyle} from 'https://esm.sh/mdast-util-heading-style@2'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {headingStyle} from 'https://esm.sh/mdast-util-heading-style@2?bundle'
+</script>
 ```
 
 ## Use
 
 ```js
 import {unified} from 'unified'
+import {fromMarkdown} from 'mdast-util-from-markdown'
 import {headingStyle} from 'mdast-util-heading-style'
-import remarkParse from 'remark-parse'
 
-const processor = unified().use(remarkParse)
+headingStyle(fromMarkdown('# ATX').children[0]) // => 'atx'
+headingStyle(fromMarkdown('# ATX #\n').children[0]) // => 'atx-closed'
+headingStyle(fromMarkdown('ATX\n===').children[0]) // => 'setext'
 
-headingStyle(processor.parse('# ATX').children[0]) // => 'atx'
-headingStyle(processor.parse('# ATX #\n').children[0]) // => 'atx-closed'
-headingStyle(processor.parse('ATX\n===').children[0]) // => 'setext'
-
-headingStyle(processor.parse('### ATX').children[0]) // => null
-headingStyle(processor.parse('### ATX').children[0], 'setext') // => 'setext'
+headingStyle(fromMarkdown('### ATX').children[0]) // => null
+headingStyle(fromMarkdown('### ATX').children[0], 'setext') // => 'setext'
 ```
 
 ## API
 
-This package exports the following identifiers: `headingStyle`.
+This package exports the identifier `headingStyle`.
 There is no default export.
 
 ### `headingStyle(node[, relative])`
 
-Get the heading style of a node.
-
-###### Parameters
-
-*   `node` ([`Node`][node]) — Node to parse
-*   `relative` (`string`, optional) — Style to use for ambiguous headings
-    (atx-headings with a level of three or more could also be setext)
+Get the heading style of a node ([`Node`][node]), optionally `relative` to
+a preferred style (`'atx'`, `'atx-closed'`, `'setext'`, optional).
+This is because ATX headings with a depth of three or more could be considered
+setext.
 
 ###### Returns
 
-`string` (`'atx'`, `'atx-closed'`, or `'setext'`) — When an ambiguous
-heading is found, either `relative` or `null` is returned.
+Style (`'atx'`, `'atx-closed'`, or `'setext'`).
+When an ambiguous heading is found, either `relative` or `null` is returned.
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports the type `Style`.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 12.20+, 14.14+, and 16.0+.
+Our projects sometimes work with older versions, but this is not guaranteed.
 
 ## Security
 
-Use of `mdast-util-heading-style` does not involve [**hast**][hast] so there are
+Use of `mdast-util-heading-style` does not involve **[hast][]** so there are
 no openings for [cross-site scripting (XSS)][xss] attacks.
 
 ## Related
@@ -72,8 +123,8 @@ no openings for [cross-site scripting (XSS)][xss] attacks.
 
 ## Contribute
 
-See [`contributing.md` in `syntax-tree/.github`][contributing] for ways to get
-started.
+See [`contributing.md`][contributing] in [`syntax-tree/.github`][health] for
+ways to get started.
 See [`support.md`][support] for ways to get help.
 
 This project has a [code of conduct][coc].
@@ -118,11 +169,19 @@ abide by its terms.
 
 [npm]: https://docs.npmjs.com/cli/install
 
-[contributing]: https://github.com/syntax-tree/.github/blob/HEAD/contributing.md
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
 
-[support]: https://github.com/syntax-tree/.github/blob/HEAD/support.md
+[esmsh]: https://esm.sh
 
-[coc]: https://github.com/syntax-tree/.github/blob/HEAD/code-of-conduct.md
+[typescript]: https://www.typescriptlang.org
+
+[health]: https://github.com/syntax-tree/.github
+
+[contributing]: https://github.com/syntax-tree/.github/blob/main/contributing.md
+
+[support]: https://github.com/syntax-tree/.github/blob/main/support.md
+
+[coc]: https://github.com/syntax-tree/.github/blob/main/code-of-conduct.md
 
 [mdast]: https://github.com/syntax-tree/mdast
 
@@ -131,3 +190,5 @@ abide by its terms.
 [xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
 
 [hast]: https://github.com/syntax-tree/hast
+
+[remark-lint]: https://github.com/remarkjs/remark-lint
