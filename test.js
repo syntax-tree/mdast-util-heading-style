@@ -1,19 +1,20 @@
 /**
  * @typedef {import('mdast').Root} Root
+ * @typedef {import('mdast').Heading} Heading
  */
 
-import assert from 'node:assert'
-import test from 'tape'
-import {remark} from 'remark'
+import assert from 'node:assert/strict'
+import test from 'node:test'
+import {fromMarkdown} from 'mdast-util-from-markdown'
 import {headingStyle} from './index.js'
 
-test('headingStyle', (t) => {
-  t.throws(() => {
+test('headingStyle', () => {
+  assert.throws(() => {
     // @ts-ignore runtime.
     headingStyle()
   }, 'should fail without node')
 
-  t.equal(
+  assert.equal(
     // @ts-ignore runtime.
     headingStyle({
       type: 'heading',
@@ -23,100 +24,107 @@ test('headingStyle', (t) => {
     'should NOT fail on undetectable nodes'
   )
 
-  t.equal(headingStyle(parseFirstNode('# ATX')), 'atx', 'should detect atx')
+  assert.equal(
+    headingStyle(parseFirstNode('# ATX')),
+    'atx',
+    'should detect atx'
+  )
 
-  t.equal(
+  assert.equal(
     headingStyle(parseFirstNode('# ATX #')),
     'atx-closed',
     'should detect closed atx'
   )
 
-  t.equal(
+  assert.equal(
     headingStyle(parseFirstNode('ATX\n===')),
     'setext',
     'should detect closed setext'
   )
 
-  t.equal(
+  assert.equal(
     headingStyle(parseFirstNode('### ATX')),
     null,
     'should work on ambiguous nodes'
   )
 
-  t.equal(
+  assert.equal(
     headingStyle(parseFirstNode('### ATX'), 'atx'),
     'atx',
     'should work on ambiguous nodes (preference to atx)'
   )
 
-  t.equal(
+  assert.equal(
     headingStyle(parseFirstNode('### ATX'), 'setext'),
     'setext',
     'should work on ambiguous nodes (preference to setext)'
   )
 
-  t.equal(
+  assert.equal(
     headingStyle(parseFirstNode('###### ######')),
     'atx-closed',
     'should work on empty nodes (#1)'
   )
 
-  t.equal(
+  assert.equal(
     headingStyle(parseFirstNode('### ###')),
     'atx-closed',
     'should work on empty nodes (#2)'
   )
 
-  t.equal(
+  assert.equal(
     headingStyle(parseFirstNode('# #')),
     'atx-closed',
     'should work on empty nodes (#3)'
   )
 
-  t.equal(
+  assert.equal(
     headingStyle(parseFirstNode('###### '), 'atx'),
     'atx',
     'should work on empty nodes (#4)'
   )
 
-  t.equal(
+  assert.equal(
     headingStyle(parseFirstNode('### '), 'atx'),
     'atx',
     'should work on empty nodes (#5)'
   )
 
-  t.equal(
+  assert.equal(
     headingStyle(parseFirstNode('## ')),
     'atx',
     'should work on empty nodes (#6)'
   )
 
-  t.equal(
+  assert.equal(
     headingStyle(parseFirstNode('###### '), 'setext'),
     'setext',
     'should work on empty nodes (#7)'
   )
 
-  t.equal(
+  assert.equal(
     headingStyle(parseFirstNode('### '), 'setext'),
     'setext',
     'should work on empty nodes (#8)'
   )
 
-  t.equal(
+  assert.equal(
     headingStyle(parseFirstNode('## '), 'setext'),
     'atx',
     'should work on empty nodes (#9)'
   )
-
-  t.end()
 })
 
 /**
+ * Get the heading.
+ *
  * @param {string} doc
+ *   Input markdown.
+ * @returns {Heading}
+ *   Heading node.
  */
 function parseFirstNode(doc) {
-  const tree = /** @type {Root} */ (remark.parse(doc))
+  const tree = fromMarkdown(doc)
   const head = tree.children[0]
   assert(head.type === 'heading')
   return head
