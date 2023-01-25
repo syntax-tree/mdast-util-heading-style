@@ -7,8 +7,15 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import {fromMarkdown} from 'mdast-util-from-markdown'
 import {headingStyle} from './index.js'
+import * as mod from './index.js'
 
 test('headingStyle', () => {
+  assert.deepEqual(
+    Object.keys(mod).sort(),
+    ['headingStyle'],
+    'should expose the public api'
+  )
+
   assert.throws(() => {
     // @ts-ignore runtime.
     headingStyle()
