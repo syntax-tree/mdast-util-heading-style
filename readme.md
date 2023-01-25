@@ -18,6 +18,7 @@
 *   [Use](#use)
 *   [API](#api)
     *   [`headingStyle(node[, relative])`](#headingstylenode-relative)
+    *   [`Style`](#style)
 *   [Types](#types)
 *   [Compatibility](#compatibility)
 *   [Security](#security)
@@ -45,7 +46,7 @@ It’s used in [`remark-lint`][remark-lint].
 ## Install
 
 This package is [ESM only][esm].
-In Node.js (version 12.20+, 14.14+, or 16.0+), install with [npm][]:
+In Node.js (version 14.14+ and 16.0+), install with [npm][]:
 
 ```sh
 npm install mdast-util-heading-style
@@ -82,31 +83,48 @@ headingStyle(fromMarkdown('### ATX').children[0], 'setext') // => 'setext'
 
 ## API
 
-This package exports the identifier `headingStyle`.
+This package exports the identifier [`headingStyle`][api-headingstyle].
 There is no default export.
 
 ### `headingStyle(node[, relative])`
 
-Get the heading style of a node ([`Node`][node]), optionally `relative` to
-a preferred style (`'atx'`, `'atx-closed'`, `'setext'`, optional).
-This is because ATX headings with a depth of three or more could be considered
-setext.
+Get the heading style of a heading, optionally `relative` to a preferred
+style.
+
+This is because ATX headings with a depth of three or more could be
+considered setext.
+
+###### Parameters
+
+*   `node` ([`Heading`][heading])
+    — heading node to check
+*   `style` ([`Style`][api-style], optional)
+    — relative style
 
 ###### Returns
 
-Style (`'atx'`, `'atx-closed'`, or `'setext'`).
-When an ambiguous heading is found, either `relative` or `null` is returned.
+Style ([`Style`][api-style]) if it can be inferred, `null` otherwise.
+
+### `Style`
+
+Style of heading (TypeScript type).
+
+###### Type
+
+```ts
+type Style = 'atx' | 'atx-closed' | 'setext'
+```
 
 ## Types
 
 This package is fully typed with [TypeScript][].
-It exports the type `Style`.
+It exports the additional type [`Style`][api-style].
 
 ## Compatibility
 
 Projects maintained by the unified collective are compatible with all maintained
 versions of Node.js.
-As of now, that is Node.js 12.20+, 14.14+, and 16.0+.
+As of now, that is Node.js 14.14+ and 16.0+.
 Our projects sometimes work with older versions, but this is not guaranteed.
 
 ## Security
@@ -185,10 +203,14 @@ abide by its terms.
 
 [mdast]: https://github.com/syntax-tree/mdast
 
-[node]: https://github.com/syntax-tree/unist#node
+[heading]: https://github.com/syntax-tree/mdast#heading
 
 [xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
 
 [hast]: https://github.com/syntax-tree/hast
 
 [remark-lint]: https://github.com/remarkjs/remark-lint
+
+[api-headingstyle]: #headingstylenode-relative
+
+[api-style]: #style
