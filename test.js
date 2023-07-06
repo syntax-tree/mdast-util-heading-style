@@ -28,7 +28,7 @@ test('headingStyle', async function (t) {
         type: 'heading',
         children: [{type: 'text', value: 'foo'}]
       }),
-      null
+      undefined
     )
   })
 
@@ -45,7 +45,7 @@ test('headingStyle', async function (t) {
   })
 
   await t.test('should work on ambiguous nodes', async function () {
-    assert.equal(headingStyle(parseFirstNode('### ATX')), null)
+    assert.equal(headingStyle(parseFirstNode('### ATX')), undefined)
   })
 
   await t.test(

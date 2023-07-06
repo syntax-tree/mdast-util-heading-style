@@ -77,7 +77,7 @@ headingStyle(fromMarkdown('# ATX').children[0]) // => 'atx'
 headingStyle(fromMarkdown('# ATX #\n').children[0]) // => 'atx-closed'
 headingStyle(fromMarkdown('ATX\n===').children[0]) // => 'setext'
 
-headingStyle(fromMarkdown('### ATX').children[0]) // => null
+headingStyle(fromMarkdown('### ATX').children[0]) // => undefined
 headingStyle(fromMarkdown('### ATX').children[0], 'setext') // => 'setext'
 ```
 
@@ -103,7 +103,7 @@ considered setext.
 
 ###### Returns
 
-Style ([`Style`][api-style]) if it can be inferred, `null` otherwise.
+Style ([`Style`][api-style]) if it can be inferred, `undefined` otherwise.
 
 ### `Style`
 
