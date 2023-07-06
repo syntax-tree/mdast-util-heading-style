@@ -1,5 +1,4 @@
 /**
- * @typedef {import('mdast').Root} Root
  * @typedef {import('mdast').Heading} Heading
  */
 
@@ -7,119 +6,97 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import {fromMarkdown} from 'mdast-util-from-markdown'
 import {headingStyle} from './index.js'
-import * as mod from './index.js'
 
-test('headingStyle', () => {
-  assert.deepEqual(
-    Object.keys(mod).sort(),
-    ['headingStyle'],
-    'should expose the public api'
+test('headingStyle', async function (t) {
+  await t.test('should expose the public api', async function () {
+    assert.deepEqual(Object.keys(await import('./index.js')).sort(), [
+      'headingStyle'
+    ])
+  })
+
+  await t.test('should fail without node', async function () {
+    assert.throws(function () {
+      // @ts-expect-error: check that an error is thrown at runtime.
+      headingStyle()
+    })
+  })
+
+  await t.test('should NOT fail on undetectable nodes', async function () {
+    assert.equal(
+      // @ts-expect-error: check that an error is thrown at runtime.
+      headingStyle({
+        type: 'heading',
+        children: [{type: 'text', value: 'foo'}]
+      }),
+      null
+    )
+  })
+
+  await t.test('should detect atx', async function () {
+    assert.equal(headingStyle(parseFirstNode('# ATX')), 'atx')
+  })
+
+  await t.test('should detect closed atx', async function () {
+    assert.equal(headingStyle(parseFirstNode('# ATX #')), 'atx-closed')
+  })
+
+  await t.test('should detect closed setext', async function () {
+    assert.equal(headingStyle(parseFirstNode('ATX\n===')), 'setext')
+  })
+
+  await t.test('should work on ambiguous nodes', async function () {
+    assert.equal(headingStyle(parseFirstNode('### ATX')), null)
+  })
+
+  await t.test(
+    'should work on ambiguous nodes (preference to atx)',
+    async function () {
+      assert.equal(headingStyle(parseFirstNode('### ATX'), 'atx'), 'atx')
+    }
   )
 
-  assert.throws(() => {
-    // @ts-ignore runtime.
-    headingStyle()
-  }, 'should fail without node')
-
-  assert.equal(
-    // @ts-ignore runtime.
-    headingStyle({
-      type: 'heading',
-      children: [{type: 'text', value: 'foo'}]
-    }),
-    null,
-    'should NOT fail on undetectable nodes'
+  await t.test(
+    'should work on ambiguous nodes (preference to setext)',
+    async function () {
+      assert.equal(headingStyle(parseFirstNode('### ATX'), 'setext'), 'setext')
+    }
   )
 
-  assert.equal(
-    headingStyle(parseFirstNode('# ATX')),
-    'atx',
-    'should detect atx'
-  )
+  await t.test('should work on empty nodes (#1)', async function () {
+    assert.equal(headingStyle(parseFirstNode('###### ######')), 'atx-closed')
+  })
 
-  assert.equal(
-    headingStyle(parseFirstNode('# ATX #')),
-    'atx-closed',
-    'should detect closed atx'
-  )
+  await t.test('should work on empty nodes (#2)', async function () {
+    assert.equal(headingStyle(parseFirstNode('### ###')), 'atx-closed')
+  })
 
-  assert.equal(
-    headingStyle(parseFirstNode('ATX\n===')),
-    'setext',
-    'should detect closed setext'
-  )
+  await t.test('should work on empty nodes (#3)', async function () {
+    assert.equal(headingStyle(parseFirstNode('# #')), 'atx-closed')
+  })
 
-  assert.equal(
-    headingStyle(parseFirstNode('### ATX')),
-    null,
-    'should work on ambiguous nodes'
-  )
+  await t.test('should work on empty nodes (#4)', async function () {
+    assert.equal(headingStyle(parseFirstNode('###### '), 'atx'), 'atx')
+  })
 
-  assert.equal(
-    headingStyle(parseFirstNode('### ATX'), 'atx'),
-    'atx',
-    'should work on ambiguous nodes (preference to atx)'
-  )
+  await t.test('should work on empty nodes (#5)', async function () {
+    assert.equal(headingStyle(parseFirstNode('### '), 'atx'), 'atx')
+  })
 
-  assert.equal(
-    headingStyle(parseFirstNode('### ATX'), 'setext'),
-    'setext',
-    'should work on ambiguous nodes (preference to setext)'
-  )
+  await t.test('should work on empty nodes (#6)', async function () {
+    assert.equal(headingStyle(parseFirstNode('## ')), 'atx')
+  })
 
-  assert.equal(
-    headingStyle(parseFirstNode('###### ######')),
-    'atx-closed',
-    'should work on empty nodes (#1)'
-  )
+  await t.test('should work on empty nodes (#7)', async function () {
+    assert.equal(headingStyle(parseFirstNode('###### '), 'setext'), 'setext')
+  })
 
-  assert.equal(
-    headingStyle(parseFirstNode('### ###')),
-    'atx-closed',
-    'should work on empty nodes (#2)'
-  )
+  await t.test('should work on empty nodes (#8)', async function () {
+    assert.equal(headingStyle(parseFirstNode('### '), 'setext'), 'setext')
+  })
 
-  assert.equal(
-    headingStyle(parseFirstNode('# #')),
-    'atx-closed',
-    'should work on empty nodes (#3)'
-  )
-
-  assert.equal(
-    headingStyle(parseFirstNode('###### '), 'atx'),
-    'atx',
-    'should work on empty nodes (#4)'
-  )
-
-  assert.equal(
-    headingStyle(parseFirstNode('### '), 'atx'),
-    'atx',
-    'should work on empty nodes (#5)'
-  )
-
-  assert.equal(
-    headingStyle(parseFirstNode('## ')),
-    'atx',
-    'should work on empty nodes (#6)'
-  )
-
-  assert.equal(
-    headingStyle(parseFirstNode('###### '), 'setext'),
-    'setext',
-    'should work on empty nodes (#7)'
-  )
-
-  assert.equal(
-    headingStyle(parseFirstNode('### '), 'setext'),
-    'setext',
-    'should work on empty nodes (#8)'
-  )
-
-  assert.equal(
-    headingStyle(parseFirstNode('## '), 'setext'),
-    'atx',
-    'should work on empty nodes (#9)'
-  )
+  await t.test('should work on empty nodes (#9)', async function () {
+    assert.equal(headingStyle(parseFirstNode('## '), 'setext'), 'atx')
+  })
 })
 
 /**
