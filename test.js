@@ -1,4 +1,5 @@
 /**
+ * @typedef {import('mdast').Root} Root
  * @typedef {import('mdast').Heading} Heading
  */
 
@@ -109,7 +110,8 @@ test('headingStyle', async function (t) {
  *   Heading node.
  */
 function parseFirstNode(doc) {
-  const tree = fromMarkdown(doc)
+  // To do: remove cast when `from-markdown` is released.
+  const tree = /** @type {Root} */ (fromMarkdown(doc))
   const head = tree.children[0]
   assert(head.type === 'heading')
   return head
