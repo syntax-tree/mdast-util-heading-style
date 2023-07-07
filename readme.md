@@ -55,14 +55,14 @@ npm install mdast-util-heading-style
 In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import {headingStyle} from 'https://esm.sh/mdast-util-heading-style@2'
+import {headingStyle} from 'https://esm.sh/mdast-util-heading-style@3'
 ```
 
 In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import {headingStyle} from 'https://esm.sh/mdast-util-heading-style@2?bundle'
+  import {headingStyle} from 'https://esm.sh/mdast-util-heading-style@3?bundle'
 </script>
 ```
 
